@@ -4,7 +4,7 @@ Plugin Name: Easy Google Analytics Tracking Code
 Plugin URI: https://www.ferrancatalan.com
 Description: Add easily Google analytics tracking code to your website
 Author: Ferran Catalan
-Version: 0.1
+Version: 0.2
  */
  
 class WP_AddAnalyticsCode{
@@ -73,16 +73,16 @@ class WP_AddAnalyticsCode{
 		return array_merge($new_links, $links);
 	}
 	
+	
 	function add_google_analytics_code(){
-		global $current_user;
-		get_currentuserinfo();
+		$current_user = wp_get_current_user();
 		
 		if(get_option('analytics_data_code','0')=='0' || get_option('analytics_data_code','0')== ''){
 			$g_admin = get_option('analytics_data_admin_traffic','0');
 			$g_editor = get_option('analytics_data_editor_traffic','0');
 			$g_404 = get_option('analytics_data_404_traffic','0');
 			
-			if($g_admin=='1' &&  current_user_can('administrator') ){
+			if($g_admin=='1' &&  is_admin()){
 				return;
 			}if($g_editor=='1' &&  current_user_can('editor') ){
 				return;
@@ -96,24 +96,28 @@ class WP_AddAnalyticsCode{
 	}
 	
 	function options_page() {
+		if(is_admin()){
+			
 		    if(isset($_POST['action']) && $_POST['action'] === "saveoptions"){
-				update_option('analytics_data_code',$_POST['analytics_data_code']);
-				update_option('analytics_data_admin_traffic',$_POST['analytics_data_admin_traffic']);		
-				update_option('analytics_data_editor_traffic',$_POST['analytics_data_editor_traffic']);		
-				update_option('analytics_data_404_traffic',$_POST['analytics_data_404_traffic']);		
 				
-				printf("<div class='updated message' style='padding: 10px'>Settings updated.</div>");
-			}elseif(isset($_GET['state']) && $_GET['state'] == "1"){
+				update_option('analytics_data_code',sanitize_text_field($_POST['analytics_data_code']));
+				update_option('analytics_data_admin_traffic',sanitize_text_field($_POST['analytics_data_admin_traffic']));		
+				update_option('analytics_data_editor_traffic',sanitize_text_field($_POST['analytics_data_editor_traffic']));		
+				update_option('analytics_data_404_traffic',sanitize_text_field($_POST['analytics_data_404_traffic']));		
+				
+				printf(esc_html("<div class='updated message' style='padding: 10px'>Settings updated.</div>"));
+			}elseif(isset($_GET['state']) && sanitize_text_field($_GET['state']) == "1"){
 				update_option('analytics_tracking',1);	
 			
-			}elseif(isset($_GET['state']) && $_GET['state'] == "0"){
+			}elseif(isset($_GET['state']) && sanitize_text_field($_GET['state']) == "0"){
 				update_option('analytics_tracking',0);		
 				
 			}
+		}
     ?>
 		
 		<div class="wrap">
-			<h2><?php echo $this->plguin_options_page_title; ?></h2>
+			<h2><?php echo esc_html($this->plguin_options_page_title); ?></h2>
 		</div>
 		<div class="postbox-container metabox-holder meta-box-sortables" style="width: 69%">
 			<div style="margin:0 5px;">
@@ -121,7 +125,7 @@ class WP_AddAnalyticsCode{
 					<div class="handlediv" title="Haz clic para alternar"><br></div>
 					<div class="inside">
 						<div>
-						<h2><?php echo $this->plguin_options_menue_title; ?> Setting</h2>
+						<h2><?php echo esc_html($this->plguin_options_menue_title); ?> Setting</h2>
 						<form method="post">
 							<input type='hidden' name='action' value='saveoptions'  class="regular-text" > 
 						<table class="form-table">
@@ -185,9 +189,9 @@ class WP_AddAnalyticsCode{
 						$(document).ready(function(){
 							$('.checkbox').click(function(){
 								if ($('.checkbox').is(':checked')) {
-									window.location.href = "<?php printf($this->options_page); ?>?page=<?php echo $this->plugin_options_slug; ?>&state=1";
+									window.location.href = "<?php printf(esc_html($this->options_page)); ?>?page=<?php echo esc_html($this->plugin_options_slug); ?>&state=1";
 								} else{
-									window.location.href = "<?php printf($this->options_page); ?>?page=<?php echo $this->plugin_options_slug; ?>&state=0";
+									window.location.href = "<?php printf(esch_html($this->options_page)); ?>?page=<?php echo esc_html($this->plugin_options_slug); ?>&state=0";
 								}
 							});
 						});
@@ -206,7 +210,7 @@ class WP_AddAnalyticsCode{
 				<div class="postbox gabout">
 					<h3>About</h3>
 					<div class="inside">
-						<h4><?php echo $this->plguin_options_page_title; ?> Version <?php echo $this->plugin_options_version; ?></h4>
+						<h4><?php echo esc_html($this->plguin_options_page_title); ?> Version <?php echo sc_html($this->plugin_options_version); ?></h4>
 						<p>Easy way to add google analytics to every page of your website.</p>
 						<ul>
 							<li>Google Analytics: <a href="https://analytics.google.com/" target="_blank">more information</a>.</li>

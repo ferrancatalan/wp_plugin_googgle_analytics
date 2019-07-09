@@ -4,7 +4,7 @@ Plugin Name: Easy Google Analytics Tracking Code
 Plugin URI: https://www.ferrancatalan.com
 Description: Add easily Google analytics tracking code to your website
 Author: Ferran Catalan
-Version: 0.5
+Version: 0.6
  */
  
 class WP_AddAnalyticsCode{
@@ -14,7 +14,7 @@ class WP_AddAnalyticsCode{
 	var $plugin_options_slug = 'add-analytics-code';
 	var $admin_slug_settings = 'settings_page';
 	var $admin_slug_plugins = 'plugins';
-	var $plugin_options_version = '0.5';
+	var $plugin_options_version = '0.6';
 	var $plugin_page = 'plugins.php';
 	var $options_page = 'options-general.php';
 	
@@ -77,11 +77,10 @@ class WP_AddAnalyticsCode{
 	function add_google_analytics_code(){
 		$current_user = wp_get_current_user();
 		
-		if(get_option('analytics_data_code','0')=='0' || get_option('analytics_data_code','0')== ''){
+		if(get_option('analytics_data_code','0')!='0' && get_option('analytics_data_code','0')!= ''){
 			$g_admin = get_option('analytics_data_admin_traffic','0');
 			$g_editor = get_option('analytics_data_editor_traffic','0');
 			$g_404 = get_option('analytics_data_404_traffic','0');
-			
 			if($g_admin=='1' &&  is_admin()){
 				return;
 			}if($g_editor=='1' &&  current_user_can('editor') ){
@@ -90,7 +89,18 @@ class WP_AddAnalyticsCode{
 			else if($g_404=='1' && is_404()){
 				return;
 			}else{
-				printf(get_option('analytics_data_code'));
+				 $tracking_code = get_option('analytics_data_code');
+					?>
+					<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $tracking_code ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '<?php echo $tracking_code ?>');
+</script>
+					<?php
 			}
 		}		
 	}
@@ -98,13 +108,20 @@ class WP_AddAnalyticsCode{
 	function options_page() {
 		if(is_admin()){
 			if(!empty($_POST['_wpnonce']) && wp_verify_nonce( $_POST['_wpnonce'],$this->plugin_options_slug)){
-				if(isset($_POST['action']) && $_POST['action'] === "saveoptions"){					
-					update_option('analytics_data_code',sanitize_text_field($_POST['analytics_data_code']));
-					update_option('analytics_data_admin_traffic',sanitize_text_field($_POST['analytics_data_admin_traffic']));		
-					update_option('analytics_data_editor_traffic',sanitize_text_field($_POST['analytics_data_editor_traffic']));		
-					update_option('analytics_data_404_traffic',sanitize_text_field($_POST['analytics_data_404_traffic']));		
-					update_option('analytics_tracking',sanitize_text_field($_POST['analytics_tracking']));		
-					echo '<div class="updated message" style="padding: 10px">Settings updated.</div>';
+				if(isset($_POST['action']) && $_POST['action'] === "saveoptions"){
+						
+						$pattern = '/UA\-\d\d\d\d\d\d\d\d\d\-\d/';
+						
+						if(preg_match($pattern,sanitize_text_field($_POST['analytics_data_code']))){
+							update_option('analytics_data_code',sanitize_text_field($_POST['analytics_data_code']));
+							update_option('analytics_data_admin_traffic',sanitize_text_field($_POST['analytics_data_admin_traffic']));		
+							update_option('analytics_data_editor_traffic',sanitize_text_field($_POST['analytics_data_editor_traffic']));		
+							update_option('analytics_data_404_traffic',sanitize_text_field($_POST['analytics_data_404_traffic']));		
+							update_option('analytics_tracking',sanitize_text_field($_POST['analytics_tracking']));		
+							echo '<div class="updated message" style="padding: 10px">Settings updated.</div>';
+						}else{
+							echo '<div class="error message" style="padding: 10px">Check your analytic code. Should have format UA-XXXXXXXXX-X.</div>';
+						}
 				}
 			} 
 		}
@@ -126,10 +143,10 @@ class WP_AddAnalyticsCode{
 								<tbody>
 								<tr>
 									<th>Enter Analytics code:</th>
-									<td><textarea name="analytics_data_code" id="analytics_data_code" style="width:100%; height:150px;"><?php echo get_option('analytics_data_code'); ?></textarea>
-										<label for="analytics_data_code">Paste tracking code from google analytics property.</label>
+									<td>
+									<input name="analytics_data_code" id="analytics_data_code" type="text" placeholder="UA-XXXXXXXXX-X" value="<?php echo get_option('analytics_data_code'); ?>" class="regular-text code">
 									</td>
-								</tr>
+								</tr>								
 								<tr>
 									<th>Options:</th>
 									<td>

@@ -198,9 +198,9 @@ class WP_AddAnalyticsCode{
 					<?php } ?>
 								<label class="switch">
 									<script>
-									$(document).ready(function(){
-										$('.checkbox').click(function(){
-											$('.button').trigger('click');
+									jQuery(document).ready(function(){
+										jQuery('.checkbox').click(function(){
+											jQuery('.button').trigger('click');
 										});
 									});
 									</script>

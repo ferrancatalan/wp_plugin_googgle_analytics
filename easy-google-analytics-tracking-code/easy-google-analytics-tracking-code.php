@@ -120,7 +120,7 @@ class WP_AddAnalyticsCode{
 							update_option('analytics_tracking',sanitize_text_field($_POST['analytics_tracking']));		
 							echo '<div class="updated message" style="padding: 10px">Settings updated.</div>';
 						}else{
-							echo '<div class="error message" style="padding: 10px">Check your analytic code. Should have format UA-XXXXXXXXX-X.</div>';
+							echo '<div class="error message" style="padding: 10px">Incorrect format UA-XXXXXXXXX-X.</div>';
 						}
 				}
 			} 

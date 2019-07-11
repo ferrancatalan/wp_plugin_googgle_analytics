@@ -1,7 +1,9 @@
 === Plugin Name ===
 Donate link: https://ferrancatalan.com/
+Contributors: ferranBCN
 Tags: google analytics, tracking code, easy, add
 Requires at least: 4.0.1
+Author URI: https://ferrancatalan.com/
 Tested up to: 5.2.2
 Stable tag: 4.9
 License: GPLv2 or later
@@ -29,8 +31,4 @@ How to install and track your blog
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Settings panel.

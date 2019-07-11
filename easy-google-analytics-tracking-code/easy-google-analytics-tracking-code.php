@@ -4,7 +4,7 @@ Plugin Name: Easy Google Analytics Tracking Code
 Plugin URI: https://www.ferrancatalan.com
 Description: Add easily Google analytics tracking code to your website
 Author: Ferran Catalan
-Version: 0.6
+Version: 0.8
  */
  
 class WP_AddAnalyticsCode{
@@ -14,7 +14,7 @@ class WP_AddAnalyticsCode{
 	var $plugin_options_slug = 'add-analytics-code';
 	var $admin_slug_settings = 'settings_page';
 	var $admin_slug_plugins = 'plugins';
-	var $plugin_options_version = '0.6';
+	var $plugin_options_version = '0.8';
 	var $plugin_page = 'plugins.php';
 	var $options_page = 'options-general.php';
 	
@@ -110,7 +110,7 @@ class WP_AddAnalyticsCode{
 			if(!empty($_POST['_wpnonce']) && wp_verify_nonce( $_POST['_wpnonce'],$this->plugin_options_slug)){
 				if(isset($_POST['action']) && $_POST['action'] === "saveoptions"){
 						
-						$pattern = '/UA\-\d\d\d\d\d\d\d\d\d\-\d/';
+						$pattern = '/UA\-([0-9]{8}|[0-9]{9}|[0-9]{10}|[0-9]{11})-\d/';
 						
 						if(preg_match($pattern,sanitize_text_field($_POST['analytics_data_code']))){
 							update_option('analytics_data_code',sanitize_text_field($_POST['analytics_data_code']));

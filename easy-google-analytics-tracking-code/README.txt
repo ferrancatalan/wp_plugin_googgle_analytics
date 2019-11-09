@@ -1,10 +1,10 @@
 === Plugin Name ===
-Donate link: https://ferrancatalan.com/
-Contributors: ferranBCN
+Donate link: https://www.ferrancatalan.com/
+Author: Ferran Catalan
 Tags: google analytics, tracking code, easy, add
 Requires at least: 4.0.1
-Author URI: https://ferrancatalan.com/
-Tested up to: 5.2.2
+Author URI: https://www.ferrancatalan.com/
+Tested up to: 5.3
 Stable tag: 4.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

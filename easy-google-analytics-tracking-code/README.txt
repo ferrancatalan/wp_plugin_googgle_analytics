@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Easy Google Analytics Tracking Code ===
 Donate link: https://www.ferrancatalan.com/
 Author: Ferran Catalan
 Tags: google analytics, tracking code, easy, add

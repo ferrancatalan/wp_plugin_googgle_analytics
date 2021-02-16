@@ -1,15 +1,18 @@
 <?php
 /*
-Plugin Name: Easy Google Analytics Tracking Code
-Plugin URI: https://www.ferrancatalan.com
-Description: Add easily Google analytics tracking code to your website
-Author: Ferran Catalan
-Version: 0.8
+* Plugin Name: 	Easy Google Analytics Tracking Code
+* Plugin URI: 	https://www.ferrancatalan.com
+* Description: 	Add easily Google analytics tracking code to your website
+* Author: 		Ferran Catalan
+* Version: 		0.8
+* Author URI:	https://www.ferrancatalan.com
+* Text Domain:	easy-google-analytics-tracking-code
+* Domain Path:	/languages
  */
  
 class WP_AddAnalyticsCode{
 	
-	var $plguin_options_page_title = 'Easy Google Analytics Tracking code';
+	var $plugin_options_page_title = 'Easy Google Analytics Tracking code';
 	var $plugin_options_menue_title = 'Google Analytics Code';
 	var $plugin_options_slug = 'add-analytics-code';
 	var $admin_slug_settings = 'settings_page';
@@ -32,7 +35,17 @@ class WP_AddAnalyticsCode{
 			}
 		}
 		add_action('admin_enqueue_scripts', array( $this, 'load_custom_wp_admin_style'));
+		add_action('plugins_loaded', array( $this, 'add_analytics_textdomain'));
 	}
+	
+
+	function add_analytics_textdomain() {
+		
+		$text_domain	= 'easy-google-analytics-tracking-code';
+		$path_languages = basename(dirname(__FILE__)).'/languages/';
+		load_plugin_textdomain( $text_domain, FALSE, $path_languages );
+	}
+	
 
     function load_custom_wp_admin_style($hook){
 		$current_screen = get_current_screen();
@@ -63,7 +76,7 @@ class WP_AddAnalyticsCode{
 	}
 	function admin_menu() {
 		if ( function_exists( 'add_options_page' ) AND current_user_can( 'manage_options' ) ) {
-			$options_page = add_options_page($this->plguin_options_page_title, $this->plugin_options_menue_title, 'manage_options', $this->plugin_options_slug, array( $this, 'options_page' ));
+			$options_page = add_options_page($this->plugin_options_page_title, $this->plugin_options_menue_title, 'manage_options', $this->plugin_options_slug, array( $this, 'options_page' ));
 		}
 	}
 	
@@ -92,18 +105,20 @@ class WP_AddAnalyticsCode{
 				 $tracking_code = get_option('analytics_data_code');
 					?>
 					<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $tracking_code ?>"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+						<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $tracking_code ?>"></script>
+						<script>
+						  window.dataLayer = window.dataLayer || [];
+						  function gtag(){dataLayer.push(arguments);}
+						  gtag('js', new Date());
 
-  gtag('config', '<?php echo $tracking_code ?>');
-</script>
+						  gtag('config', '<?php echo $tracking_code ?>');
+						</script>
 					<?php
 			}
 		}		
 	}
+	
+	
 	
 	function options_page() {
 		if(is_admin()){
@@ -128,15 +143,15 @@ class WP_AddAnalyticsCode{
     ?>
 		
 		<div class="wrap">
-			<h2><?php echo esc_html($this->plguin_options_page_title); ?></h2>
+			<h2><?php echo esc_html($this->plugin_options_page_title); ?></h2>
 		</div>
 		<div class="postbox-container metabox-holder meta-box-sortables" style="width: 69%">
 			<div style="margin:0 5px;">
 				<div class="postbox">
-					<div class="handlediv" title="Haz clic para alternar"><br></div>
+					<div class="handlediv"><br></div>
 					<div class="inside">
 						<div>
-						<h2><?php echo esc_html($this->plguin_options_menue_title); ?> Setting</h2>
+						<h2><?php echo esc_html($this->plguin_options_menue_title); ?> <?php echo _e( 'Settings', 'easy-google-analytics-tracking-code' ); ?></h2>
 						<form method="post">
 							<input type='hidden' name='action' value='saveoptions'  class="regular-text" > 
 						<table class="form-table">
@@ -215,7 +230,7 @@ class WP_AddAnalyticsCode{
 				<div class="postbox gabout">
 					<h3>About</h3>
 					<div class="inside">
-						<h4><?php echo esc_html($this->plguin_options_page_title); ?> Version <?php echo esc_html($this->plugin_options_version); ?></h4>
+						<h4><?php echo esc_html($this->plugin_options_page_title); ?> Version <?php echo esc_html($this->plugin_options_version); ?></h4>
 						<p>Easy way to add google analytics to every page of your website.</p>
 						<ul>
 							<li>Google Analytics: <a href="https://analytics.google.com/" target="_blank">more information</a>.</li>

@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-05-21 23:05+0200\n"
+"PO-Revision-Date: 2020-05-21 23:06+0200\n"
+"Last-Translator: Ferran Catalan <info@ferrancatalan.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;esc_html_\n"
+"X-Poedit-SearchPath-0: easy-google-analytics-tracking-code.php\n"
+
+#: easy-google-analytics-tracking-code.php:52
+msgid ""
+"Almost done. Configure your plugin to start tracking your traffic with "
+"Google Analytics."
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:54
+msgid "Google Analytics is not tracking your traffic right now."
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:60
+msgid "Go to Settings"
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:74
+msgid "Settings"
+msgstr "Ajustes"
+
+#: easy-google-analytics-tracking-code.php:147
+msgid "Enter Analytics code:"
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:153
+msgid "Options:"
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:156
+msgid "Do not track admin user traffic."
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:163
+msgid "Do not track editor user traffic."
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:170
+msgid "Do not track 404 page."
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:176
+msgid "Save"
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:187
+#: easy-google-analytics-tracking-code.php:192
+#: easy-google-analytics-tracking-code.php:197
+msgid "Tracking"
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:189
+msgid ""
+"Almost done! Configure your plugin and add the tracking code of your "
+"property to start tracking your traffic with Google Analytics."
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:194
+msgid ""
+"Google Analytics is not tracking your website now. Switch the button if you "
+"want to track it."
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:199
+msgid ""
+"Google Analytics is tracking your website Switch the button if you want to "
+"stop it..."
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:218
+msgid "About"
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:221
+msgid "Easy way to add google analytics to every page of your website."
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:223
+msgid "Google Analytics: "
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:223
+msgid "more information"
+msgstr ""
+
+#: easy-google-analytics-tracking-code.php:224
+msgid "Developed by:"
+msgstr ""

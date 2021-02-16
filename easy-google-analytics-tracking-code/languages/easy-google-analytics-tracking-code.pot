@@ -1,0 +1,42 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-25 19:35+0200\n"
+"PO-Revision-Date: 2020-05-25 19:37+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Eazy Po 0.9.5.3\n"
+
+#: easy-google-analytics-tracking-code.php:15
+msgid "Easy Google Analytics Tracking code"
+msgstr "Facil rastreador de código Google Analytics"
+
+#: easy-google-analytics-tracking-code.php:16
+msgid "Google Analytics Code"
+msgstr "Google Analytics Código"
+
+#: easy-google-analytics-tracking-code.php:53
+msgid ""
+"Almost done. Configure your plugin to start tracking your traffic with "
+"Google Analytics."
+msgstr "Casi hecho"
+
+#: easy-google-analytics-tracking-code.php:55
+msgid "Google Analytics is not tracking your traffic right now."
+msgstr "Monitorizando"
+
+#: easy-google-analytics-tracking-code.php:75
+msgid "Settings"
+msgstr "Configuración"
